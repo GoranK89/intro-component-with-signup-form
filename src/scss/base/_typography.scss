@@ -1,0 +1,51 @@
+.header {
+  color: $white;
+
+  .heading-primary {
+    font-size: 6rem;
+    line-height: 6.5rem;
+  }
+
+  .subheading {
+    font-size: 1.6rem;
+  }
+}
+
+.banner {
+  background-color: $blue;
+  color: $white;
+  font-size: 1.6rem;
+
+  &-text--primary {
+    font-weight: 600;
+  }
+  &-text--secondary {
+    font-weight: 400;
+  }
+}
+
+.form {
+  background-color: $white;
+
+  input {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
+
+  button {
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+
+  &-terms--text {
+    color: $grayishBlue;
+  }
+
+  &-terms--link {
+    text-decoration: none;
+    color: $red;
+    font-weight: 600;
+  }
+}
