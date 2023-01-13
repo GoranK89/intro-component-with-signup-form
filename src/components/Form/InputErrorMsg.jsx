@@ -1,5 +1,5 @@
 const InputErrorMsg = (props) => {
-  return <span className="error-message">{props.errorText}</span>;
+  return <span className="error-text">{props.errorText}</span>;
 };
 
 export default InputErrorMsg;
