@@ -1,9 +1,16 @@
+import { useState } from "react";
+
 import useInput from "../../hooks/use-input";
 
 import CtaBanner from "../CtaBanner";
 import InputErrorMsg from "./InputErrorMsg";
+import Modal from "../Modal";
 
 const Form = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formIsSubmitted, setFormIsSubmitted] = useState(false);
+
   const {
     value: nameValue,
     isValid: nameIsValid,
@@ -49,14 +56,42 @@ const Form = () => {
 
     if (!formIsValid) return;
 
-    console.log(
-      `${nameValue}\n${surnameValue}\n${emailValue}\n${passwordValue}`
-    );
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      console.log(
+        `${nameValue}\n${surnameValue}\n${emailValue}\n${passwordValue}`
+      );
+      setIsSubmitting(false);
+      setFormIsSubmitted(true);
+    }, "2000");
+
     nameReset();
     surnameReset();
     emailReset();
     passwordReset();
   };
+
+  const toggleModal = () => {
+    setModalIsOpen(!modalIsOpen);
+  };
+
+  if (isSubmitting) {
+    return (
+      <div className="form__container">
+        <p className="form-submiting-text">Submitting form</p>
+        <div class="lds-hourglass"></div>
+      </div>
+    );
+  }
+
+  if (formIsSubmitted) {
+    return (
+      <div className="form__container">
+        <p className="form-success-text">Form submitted, thank you!</p>
+      </div>
+    );
+  }
 
   return (
     <div className="form__container">
@@ -119,11 +154,12 @@ const Form = () => {
           <span className="form-terms--text">
             By clicking this button you are agreeing to our
           </span>
-          <a href="#" className="form-terms--link">
+          <a href="#" className="form-terms--link" onClick={toggleModal}>
             Terms and Services
           </a>
         </p>
       </form>
+      {modalIsOpen && <Modal onToggle={toggleModal} />}
     </div>
   );
 };
